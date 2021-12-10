@@ -44,6 +44,22 @@ def image_to_greyScale():
     return
 
 
+"""
+PART 2 
+"""
+
+def calcul_needle_map():
+    obj_images = load_images()
+    light_sources = load_lightSources()
+    obj_masques = load_objMask() # ???
+
+    # calcul de la matrice light_sources pseudo inverse 
+    pinv_light_sources = numpy.linalg.pinv(light_sources)
+
+    # faire le produit matriciel pour trouver les vecteurs normals 
+    N = numpy.dot(pinv_light_sources,obj_images)
+
+    return N
 if __name__ == '__main__':
     print('Please give path to the project director: /n')
     dataset_dir = input()
